@@ -1,7 +1,27 @@
 fn main() {
-    let mut  vector = vec![1,2,3,4,5,6,7,8];
+    let mut vector = vec![9,1,8,7,6,5,4,3,2];
+    selection_sort(&mut vector);
+}
 
-    binary_search(&mut vector, 4);
+fn selection_sort(vector: &mut Vec<usize>) -> Vec<usize> {
+    let mut sorted_vector: Vec<usize> = Vec::new();
+
+    while !vector.is_empty() {
+        let mut smallest_index = 0;
+
+        for index in 1..vector.len() {
+            if vector[index] < vector[smallest_index] {
+                smallest_index = index;
+            }
+        }
+
+        sorted_vector.push(vector[smallest_index]);
+        vector.remove(smallest_index);
+    }
+
+    println!("{:?}", sorted_vector);
+
+    sorted_vector
 }
 
 fn binary_search(vector: &mut Vec<usize>, item_to_search: usize) {
